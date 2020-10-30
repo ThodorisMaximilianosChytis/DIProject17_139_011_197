@@ -2,12 +2,19 @@
 Project has .git as file and remotename=origin branchname=main
 
 
-in Project:	
-git add .				//push changes
+in DIProject17_139_011_197:
+git add .				    //push changes
 git commit -m "update"
 git push origin main
 
 
 
-in Project: 				//pull changes
+in DIProject17_139_011_197:     //pull changes
 git pull origin main
+
+
+
+in DIProject17_139_011_197:  //run maven project through
+
+mvn package
+mvn clean compile exec:java

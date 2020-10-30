@@ -1,0 +1,13 @@
+
+Project has .git as file and remotename=origin branchname=main
+
+
+in Project:	
+git add .				//push changes
+git commit -m "update"
+git push origin main
+
+
+
+in Project: 				//pull changes
+git pull origin main

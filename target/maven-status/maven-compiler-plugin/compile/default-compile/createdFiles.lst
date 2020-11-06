@@ -5,6 +5,7 @@ heatmap/graphics/heatmap.class
 heatmap/graphics/AddTransparency$1.class
 heatmap/graphics/ImageGrid.class
 heatmap/graphics/ImageMerge.class
+JDBC/JDBC.class
 csvconvert/CSVUpdate.class
 csvconvert/Xml2Csv.class
 csvconvert/RandomGaussian.class

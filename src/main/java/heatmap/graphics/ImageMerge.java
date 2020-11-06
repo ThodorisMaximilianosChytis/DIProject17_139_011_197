@@ -1,4 +1,4 @@
-package heatmap;
+package heatmap.graphics;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
@@ -18,7 +18,7 @@ public class ImageMerge {
     private  BufferedImage mergedimage;
     public  ImageMerge(String background, String overlay, String mergedphoto) throws IOException {
 
-        /// RSSI MERGE
+
         BufferedImage im = ImageIO.read(new File(overlay));
         BufferedImage im2 = ImageIO.read(new File(background));
         Graphics2D g = im.createGraphics();

@@ -1,4 +1,4 @@
-package heatmap;
+package heatmap.graphics;
 
 
 import org.tc33.jheatchart.HeatChart;
@@ -19,7 +19,7 @@ public class heatmap {
         HeatChart map = new HeatChart(data);
         map.setColourScale(1.0);
         map.setHighValueColour(Color.GREEN);
-//        map.setLowValueColour(Color.RED);
+        map.setLowValueColour(Color.RED);
         map.setChartMargin(0);
         map.setCellSize(new Dimension(133,68));
         map.setAxisThickness(0);
@@ -29,7 +29,7 @@ public class heatmap {
 
 
         try {
-            map.saveToFile(new File("java-heat-chart.png"));
+            map.saveToFile(new File("./src/main/resources/java-heat-chart.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

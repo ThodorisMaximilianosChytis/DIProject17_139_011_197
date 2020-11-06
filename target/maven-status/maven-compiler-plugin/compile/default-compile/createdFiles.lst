@@ -1,4 +1,10 @@
-csvconvert/CSVUpdate.class
-csvconvert/RandomGaussian.class
+heatmap/graphics/AddTransparency.class
+heatmap/graphics/AddTransparency$2.class
 EdgeServer.class
+heatmap/graphics/heatmap.class
+heatmap/graphics/AddTransparency$1.class
+heatmap/graphics/ImageGrid.class
+heatmap/graphics/ImageMerge.class
+csvconvert/CSVUpdate.class
 csvconvert/Xml2Csv.class
+csvconvert/RandomGaussian.class

@@ -1,4 +1,5 @@
-package heatmap;
+package heatmap.graphics;
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -68,8 +69,7 @@ public class AddTransparency
         return Toolkit.getDefaultToolkit().createImage(ip);
     }
 
-    private BufferedImage ImageToBufferedImage(Image image, int width, int height)
-    {
+    private BufferedImage ImageToBufferedImage(Image image, int width, int height) {
         BufferedImage dest = new BufferedImage(
                 width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = dest.createGraphics();
@@ -80,8 +80,10 @@ public class AddTransparency
 
     public static void main(String[] args) throws IOException
     {
-        AddTransparency at = new AddTransparency("java-heat-chart.png", "rssi_map_transparent.png");
-        ImageMerge please = new ImageMerge("Map.png","rssi_map_transparent.png","rssiMap.png");
-        please.display();
+        AddTransparency at = new AddTransparency("./src/main/resources/java-heat-chart.png", "./src/main/resources/rssi_map_transparent.png");
+        ImageMerge please = new ImageMerge("./src/main/resources/Map.png","./src/main/resources/rssi_map_transparent.png","Output/rssiMap.png");
+
+
+        //please.display();
     }
 }

@@ -2,14 +2,15 @@
 Project has .git as file
 
 ama den uparxei o fakelos kan:
-git clone https://gitlab.com/TeoMCh/diproject17-139-011-197.git
+git clone https://anapgit.scanlab.gr/TeoMCh/DIProject17_139_011_197.git
 
+//apo do ke pera oti kanoume mesa ston fakelo
 
 git remote -v               //meta apo authn theloume na fainetai to scanlab kai dipla to link
 
     //an den blepoume to scanlab kai dipla to link meta thn apo panw entolh trexoume authn
 
-git remote add scanlab https://gitlab.com/TeoMCh/diproject17-139-011-197.git
+git remote add scanlab https://anapgit.scanlab.gr/TeoMCh/DIProject17_139_011_197.git
 
 
 etsi exoume onomasei pleon to remote pou deixnei sto parapanw link scanlab. to brach pou grafoume einai to main

@@ -1,4 +1,5 @@
 //STEP 1. Import required packages
+package JDBC;
 import java.sql.*;
 
 public class JDBC {

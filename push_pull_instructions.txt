@@ -5,12 +5,12 @@ Project has .git as file and remotename=origin or remotename=scanlab branchname=
 in DIProject17_139_011_197:
 git add .				    //push changes
 git commit -m "update"
-git push origin main			//git push scanlab main
+git push scanlab main			//git push scanlab main
 
 
 
 in DIProject17_139_011_197:     //pull changes
-git pull origin main		//git pull scanlab main
+git pull scanlab main		//git pull scanlab main
 
 
 

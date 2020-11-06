@@ -3,8 +3,14 @@ Project has .git as file
 
 ama den uparxei o fakelos kan:
 git clone https://gitlab.com/TeoMCh/diproject17-139-011-197.git
-git remote add scanlab https://gitlab.com/TeoMCh/diproject17-139-011-197.git
+
+
 git remote -v               //meta apo authn theloume na fainetai to scanlab kai dipla to link
+
+    //an den blepoume to scanlab kai dipla to link meta thn apo panw entolh trexoume authn
+
+git remote add scanlab https://gitlab.com/TeoMCh/diproject17-139-011-197.git
+
 
 etsi exoume onomasei pleon to remote pou deixnei sto parapanw link scanlab. to brach pou grafoume einai to main
 

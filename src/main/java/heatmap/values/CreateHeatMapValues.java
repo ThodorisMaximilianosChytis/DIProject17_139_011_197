@@ -23,9 +23,10 @@ import java.util.List;
 public class CreateHeatMapValues {
 
 //        private Map<int[],Double> Values;
-        private double[][]  Values;
+        private CellInfo[][] Values;
         private Map<String , Point2D.Double> EdgeCoordinates;
-        double[][] values;
+
+
         private File inputFile;
         private List<String[]> csvBody;
         private int nofrows;
@@ -35,12 +36,12 @@ public class CreateHeatMapValues {
 
 
             Grid = _Grid;
-
             EdgeCoordinates = new HashMap<String, Point2D.Double>();
             EdgeCoordinates.put("maxcor",maxcor);
             EdgeCoordinates.put("mincor",mincor);
 
-            Values = new double[4][10];
+            Values = new CellInfo[10][4];
+
             inputFile = new File(csvfile);
             this.Readfile();
         }
@@ -95,7 +96,7 @@ public class CreateHeatMapValues {
 
 
 
-        private void FillZ(int rssicolumn, int latcolumn, int longcolumn) {
+        private void FillZ(int datacolumn, int latcolumn, int longcolumn) {
             int size = csvBody.size();
             for (int row = 2; row < size; row++) {
 //                int[] indeces = {row, column};
@@ -105,19 +106,49 @@ public class CreateHeatMapValues {
 
 
                     Point temp;
-                    if ( (temp = CalculateGridCell(new Point2D.Double(Double.parseDouble(csvBody.get(row)[latcolumn]), Double.parseDouble(csvBody.get(row)[longcolumn] ) ) ) ) !=null)
-                        System.out.println("Row=" + row + " xcell=" + (temp.getX() +  1) + " || ycell=" + (temp.getY() +  1) );
+                    Point2D.Double Coordinates = new Point2D.Double(Double.parseDouble(csvBody.get(row)[latcolumn]) , Double.parseDouble(csvBody.get(row)[longcolumn] ) ) ;
+                    if ( (temp = CalculateGridCell( Coordinates ) )!=null) {
+
+                        System.out.println("Row=" + row + " xcell=" + (temp.getX()) + " || ycell=" + (temp.getY()));
+
+                        if (Values[(int) temp.getX()][(int) temp.getY()]==null){
+                            Values[(int) temp.getX()][(int) temp.getY()] = new CellInfo();
+                        }
+                        Values[(int) temp.getX()][(int) temp.getY()].addVisitor();
+                        Values[(int) temp.getX()][(int) temp.getY()].add2Data( Double.parseDouble(csvBody.get(row)[datacolumn]) );
+
+
+                    }else System.out.println("ROW = " + row + " OUT OF BOUNDS----------------------------------------------------");
 
 
 
             }
+
+
+
+
+
 //
         }
+
+    public void ValPrintZ() {
+            for (int i=0; i<=9; i++){
+                for(int j=0; j<=3 ; j++) {
+                    if (Values[i][j] != null){
+                        System.out.print(i + "" + j);
+                        Values[i][j].Print();
+                    }
+                }
+            }
+    }
 
     public static void main(String[] args) throws IOException, CsvException {
         CreateHeatMapValues Val = new CreateHeatMapValues("Output/all_vehicles.csv",new Point2D.Double(23.77539,37.9686200), new Point2D.Double(23.7647600,37.9668800),new Point(10,4));
 
         Val.FillZ(4,2,3);
+        Val.ValPrintZ();
 
     }
+
+
 }

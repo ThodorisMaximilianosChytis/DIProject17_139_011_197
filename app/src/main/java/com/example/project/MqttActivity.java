@@ -1,5 +1,6 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,12 +15,19 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class MqttActivity extends AppCompatActivity {
     private static final String TAG = "Mqtt Activity";
-    String IP, Port;
+
+
+
+    Intent intent = getIntent();
+    String IP = intent.getStringExtra(select_ip_port.EXTRA_TEXT1);
+
+    Intent intent2 = getIntent();
+    String Port = intent2.getStringExtra(select_ip_port.EXTRA_TEXT2);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mqtt_activity);
+        setContentView(R.layout.activity_select_time);
         try {
             MqttClient client = new MqttClient("tcp://" + IP + ":" + Port, "AndroidThingSub", new MemoryPersistence());
             client.setCallback((MqttCallback) this);

@@ -47,30 +47,7 @@ public class MainActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String clientId = MqttClient.generateClientId();
-                MqttAndroidClient client =
-                        new MqttAndroidClient(MainActivity.this, "tcp://broker.hivemq.com:1883",
-                                clientId);
-
-                try {
-                    IMqttToken token = client.connect();
-                    token.setActionCallback(new IMqttActionListener() {
-                        @Override
-                        public void onSuccess(IMqttToken asyncActionToken) {
-                            // We are connected
-                            Toast.makeText(MainActivity.this, "connected", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                            // Something went wrong e.g. connection timeout or firewall problems
-                            Toast.makeText(MainActivity.this, "disconnected", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
+                select_time();
             }
         });
 
@@ -84,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                select_ip_and_port();
             }
         });
 
@@ -110,5 +87,39 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void select_ip_and_port() {
+        Intent intent3 = new Intent(this, select_ip_port.class);
+        startActivity(intent3);
+    }
+
+    public void select_time() {
+        Intent intent1 = new Intent(this, select_time.class);
+        startActivity(intent1);
+    }
 
 }
+
+//    String clientId = MqttClient.generateClientId();
+//    MqttAndroidClient client =
+//            new MqttAndroidClient(MainActivity.this, "tcp://broker.hivemq.com:1883",
+//                    clientId);
+//
+//                try {
+//                        IMqttToken token = client.connect();
+//                        token.setActionCallback(new IMqttActionListener() {
+//@Override
+//public void onSuccess(IMqttToken asyncActionToken) {
+//        // We are connected
+//        Toast.makeText(MainActivity.this, "connected", Toast.LENGTH_SHORT).show();
+//        }
+//
+//@Override
+//public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+//        // Something went wrong e.g. connection timeout or firewall problems
+//        Toast.makeText(MainActivity.this, "disconnected", Toast.LENGTH_SHORT).show();
+//
+//        }
+//        });
+//        } catch (MqttException e) {
+//        e.printStackTrace();
+//        }

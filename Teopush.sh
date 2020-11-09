@@ -3,6 +3,8 @@
 
 comname=$1
 
+git pull scanlabmain
+
 git add .
 git commit -m "$comname"
 

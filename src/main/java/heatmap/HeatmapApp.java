@@ -44,6 +44,20 @@ public class HeatmapApp {
         }
     }
 
+    public void openandDisplayPhoto(String filename) throws IOException {
+        File file = new File(filename);
+
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+        if(file.exists()) desktop.open(file);
+
+
+}
 
     public void CreateMap() throws IOException, CsvException {
         Point GRIDWD = new Point(10,4);
@@ -62,21 +76,12 @@ public class HeatmapApp {
         ImageMerge please = new ImageMerge("./src/main/resources/Map.png","./src/main/resources/transparent_" + Name + ".png","./src/main/resources/" + Name + "Map.png");
 
         ImageGrid comeon =  new ImageGrid("./src/main/resources/"+ Name + "Map.png","./Output/" + Name + "Heatmap.png");
-    }
 
-
-    public static void main(String[] args) throws IOException, CsvException {
-
-        HeatmapApp RSSI = new HeatmapApp(6,"RSSI");
-        RSSI.CreateMap();
-
-
-        HeatmapApp Throughput = new HeatmapApp(7,"Throughput");
-        Throughput.CreateMap();
-
-
-
+        openandDisplayPhoto("./Output/" + Name + "Heatmap.png");
 
 
     }
+
+
+
 }

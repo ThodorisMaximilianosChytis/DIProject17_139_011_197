@@ -18,6 +18,10 @@ public class CellInfo {
         visitor++;
     }
 
+    public double getMeanData(){
+        return DATASUM / visitor;
+    }
+
     public void addVisitor(int inc){
         visitor+=inc;
     }

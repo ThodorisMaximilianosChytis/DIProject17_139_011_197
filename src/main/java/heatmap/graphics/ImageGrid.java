@@ -40,8 +40,4 @@ public class ImageGrid {
     }
 
 
-    public static void main(String[] args) throws IOException {
-       ImageGrid comeon =  new ImageGrid("./src/main/resources/rssiMap.png","./Output/RSSIHeatmap.png");
-
-    }
 }

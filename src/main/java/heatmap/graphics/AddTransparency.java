@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 
 public class AddTransparency
 {
-    AddTransparency(String imagepath,String imageoutput) throws IOException {
+    public AddTransparency(String imagepath, String imageoutput) throws IOException {
 
         File inFile = new File(imagepath);
         BufferedImage image = ImageIO.read(inFile);
@@ -76,14 +76,5 @@ public class AddTransparency
         g2.drawImage(image, 0, 0, null);
         g2.dispose();
         return dest;
-    }
-
-    public static void main(String[] args) throws IOException
-    {
-        AddTransparency at = new AddTransparency("./src/main/resources/java-heat-chart.png", "./src/main/resources/rssi_map_transparent.png");
-        ImageMerge please = new ImageMerge("./src/main/resources/Map.png","./src/main/resources/rssi_map_transparent.png","Output/rssiMap.png");
-
-
-        //please.display();
     }
 }

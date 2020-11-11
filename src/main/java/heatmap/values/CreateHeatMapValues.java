@@ -121,8 +121,8 @@ public class CreateHeatMapValues {
 
             for (int i=0; i<Grid.getX(); i++){
                 for(int j=0; j<Grid.getY() ; j++) {
-                    if (Values[i][j] != null) {
-                        HeatmapData[j][i] = 100 * Values[i][j].getDATASUM() / ValuesDatasum;
+                    if (Values[i][(int) Grid.getY()-1-j] != null) {
+                        HeatmapData[j][i] = 100 * Values[i][(int) Grid.getY()-1-j].getDATASUM() / ValuesDatasum;
                     }else{
                         HeatmapData[j][i]=0;
                     }

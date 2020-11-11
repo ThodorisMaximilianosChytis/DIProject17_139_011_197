@@ -28,11 +28,11 @@ public class EdgeServer {
             Converter.Convert("Output/all_vehicles.csv");
         }
 
-        HeatmapApp RSSI = new HeatmapApp(6,"RSSI");
+        HeatmapApp RSSI = new HeatmapApp(6,"RSSI","./src/main/resources/Map.png");
         RSSI.CreateMap();
 
 
-        HeatmapApp Throughput = new HeatmapApp(7,"Throughput");
+        HeatmapApp Throughput = new HeatmapApp(7,"Throughput","./src/main/resources/Map.png");
         Throughput.CreateMap();
 
 

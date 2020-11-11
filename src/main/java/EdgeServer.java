@@ -26,6 +26,11 @@ public class EdgeServer {
         if(Answer.equals("Y")){
             Xml2Csv Converter = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/all_vehicles.xml");
             Converter.Convert("Output/all_vehicles.csv");
+            Xml2Csv Converter1 = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/vehicle_26.xml");
+            Converter1.Convert("Output/vehicle_26.csv");
+            Xml2Csv Converter2 = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/vehicle_27.xml");
+            Converter2.Convert("Output/vehicle_27.csv");
+
         }
 
         HeatmapApp RSSI = new HeatmapApp(6,"RSSI","./src/main/resources/Map.png");

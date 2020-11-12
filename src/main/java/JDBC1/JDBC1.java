@@ -1,8 +1,8 @@
 //STEP 1. Import required packages
-package JDBC;
+package JDBC1;
 import java.sql.*;
 
-public class JDBC {
+public class JDBC1 {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/";
@@ -22,33 +22,13 @@ public class JDBC {
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            //STEP 4: Create database
+            //STEP 4: Execute a query
             System.out.println("Creating database...");
             stmt = conn.createStatement();
 
             String sql = "CREATE DATABASE VEHICLE";
             stmt.executeUpdate(sql);
             System.out.println("Database created successfully...");
-
-            //STEP 5: Execute a query
-            System.out.println("Creating table in given database...");
-            stmt = conn.createStatement();
-
-            sql = "CREATE TABLE VEHICLE " +
-                    "(timestep DOUBLE, " +
-                    " device_id INTEGER, " +
-                    " real_lat DOUBLE, " +
-                    " real_long DOUBLE, " +
-                    " predicted_lat DOUBLE, " +
-                    " predicted_long DOUBLE, " +
-                    " real_RSSI DOUBLE, " +
-                    " real_throughput DOUBLE, " +
-                    " predicted_RSSI DOUBLE, " +
-                    " predicted_throughput DOUBLE)";
-
-            stmt.executeUpdate(sql);
-            System.out.println("Created table in given database...");
-
         }catch(SQLException se){
             //Handle errors for JDBC
             se.printStackTrace();

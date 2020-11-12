@@ -1,11 +1,11 @@
 //STEP 1. Import required packages
-package JDBC;
+package JDBC1;
 import java.sql.*;
 
-public class JDBC {
+public class JDBC2 {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/";
+    static final String DB_URL = "jdbc:mysql://localhost/VEHICLE";
 
     //  Database credentials
     static final String USER = "";
@@ -19,22 +19,15 @@ public class JDBC {
             Class.forName("com.mysql.jdbc.Driver");
 
             //STEP 3: Open a connection
-            System.out.println("Connecting to database...");
+            System.out.println("Connecting to a selected database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Connected database successfully...");
 
-            //STEP 4: Create database
-            System.out.println("Creating database...");
-            stmt = conn.createStatement();
-
-            String sql = "CREATE DATABASE VEHICLE";
-            stmt.executeUpdate(sql);
-            System.out.println("Database created successfully...");
-
-            //STEP 5: Execute a query
+            //STEP 4: Execute a query
             System.out.println("Creating table in given database...");
             stmt = conn.createStatement();
 
-            sql = "CREATE TABLE VEHICLE " +
+            String sql = "CREATE TABLE VEHICLE " +
                     "(timestep DOUBLE, " +
                     " device_id INTEGER, " +
                     " real_lat DOUBLE, " +
@@ -48,7 +41,6 @@ public class JDBC {
 
             stmt.executeUpdate(sql);
             System.out.println("Created table in given database...");
-
         }catch(SQLException se){
             //Handle errors for JDBC
             se.printStackTrace();
@@ -59,9 +51,9 @@ public class JDBC {
             //finally block used to close resources
             try{
                 if(stmt!=null)
-                    stmt.close();
-            }catch(SQLException se2){
-            }// nothing we can do
+                    conn.close();
+            }catch(SQLException se){
+            }// do nothing
             try{
                 if(conn!=null)
                     conn.close();

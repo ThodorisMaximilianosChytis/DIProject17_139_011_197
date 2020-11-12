@@ -1,11 +1,31 @@
 
-Project has .git as file and remotename=origin or remotename=scanlab branchname=main
+Project has .git as file
+
+ama den uparxei o fakelos kan:
+git clone https://anapgit.scanlab.gr/TeoMCh/DIProject17_139_011_197.git
+
+//apo do ke pera oti kanoume mesa ston fakelo
+
+git remote -v               //meta apo authn theloume na fainetai to scanlab kai dipla to link
+
+    //an den blepoume to scanlab kai dipla to link meta thn apo panw entolh trexoume authn
+
+git remote add scanlab https://anapgit.scanlab.gr/TeoMCh/DIProject17_139_011_197.git
+
+
+etsi exoume onomasei pleon to remote pou deixnei sto parapanw link scanlab. to brach pou grafoume einai to main
+
+ara o sundiasmos remote kai branch kathorizei pou akrivws ginontai oi allages mas
+
+se emas to scanlab kai to main einai remote kai branch antistoixa
+
 
 
 in DIProject17_139_011_197:
+
 git add .				    //push changes
 git commit -m "update"
-git push scanlab main			//git push scanlab main
+git push scanlab main
 
 
 
@@ -13,10 +33,16 @@ in DIProject17_139_011_197:     //pull changes
 git pull scanlab main		//git pull scanlab main
 
 
+/*ama theloume na mhn mas zhtaei meta apo kathe push h pull ta stoixeia kanw:
+    git config --global credential.helper store
+kai meta
+    git pull scanlab main
+kai pleon ta thimatai*/
 
 
 
 in DIProject17_139_011_197:  //run maven project through
 
 mvn package
-mvn clean compile exec:java
+mvn clean compile  // mono gia comile
+mvn clean compile exec:java     //gia compile kai epeita run tou EdgeServerApp

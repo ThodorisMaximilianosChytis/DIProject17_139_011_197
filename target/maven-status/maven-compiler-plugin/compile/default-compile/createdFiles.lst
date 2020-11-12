@@ -1,10 +1,14 @@
 heatmap/graphics/AddTransparency.class
 heatmap/graphics/AddTransparency$2.class
 EdgeServer.class
-heatmap/graphics/heatmap.class
 heatmap/graphics/AddTransparency$1.class
 heatmap/graphics/ImageGrid.class
 heatmap/graphics/ImageMerge.class
+mqttcom/Test.class
+heatmap/values/CellInfo.class
+JDBC/JDBC.class
 csvconvert/CSVUpdate.class
 csvconvert/Xml2Csv.class
+heatmap/HeatmapApp.class
 csvconvert/RandomGaussian.class
+heatmap/values/CreateHeatMapValues.class

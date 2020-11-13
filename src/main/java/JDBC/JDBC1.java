@@ -1,5 +1,5 @@
 //STEP 1. Import required packages
-package JDBC1;
+package JDBC;
 import java.sql.*;
 
 public class JDBC1 {
@@ -9,7 +9,7 @@ public class JDBC1 {
 
     //  Database credentials
     static final String USER = "newuser";
-    static final String PASS = "Sdi1700197@";
+    static final String PASS = "Sdi1700139@";
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = null;
@@ -25,12 +25,11 @@ public class JDBC1 {
         System.out.println("Creating database...");
         stmt = conn.createStatement();
 
-        System.out.println("edw ftaneis");
         String sql = "CREATE DATABASE VEHICLE";
         stmt.executeUpdate(sql);
         System.out.println("Database created successfully...");
 
-        sql = "DROP DATABASE VEHICLE";
+        /* sql = "DROP DATABASE VEHICLE";
         stmt.executeUpdate(sql);
         System.out.println("database dropped");
         //Handle errors for JDBC
@@ -39,9 +38,9 @@ public class JDBC1 {
         if (stmt != null)
             stmt.close();
         if (conn != null)
-            conn.close();
+            conn.close(); */
 
         System.out.println("Goodbye!");
 
-    }//end JDBCExample
+    }//end JDBC1
 }

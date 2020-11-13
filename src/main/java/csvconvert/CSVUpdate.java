@@ -30,7 +30,7 @@ public class CSVUpdate {
     private void Readfile()throws IOException, CsvException{
         CSVReader reader = new CSVReader(new FileReader(this.inputFile));
         this.csvBody = reader.readAll();
-        System.out.println(this.csvBody.size());
+//        System.out.println(this.csvBody.size());
         this.nofrows=(this.csvBody.size());
         reader.close();
     }

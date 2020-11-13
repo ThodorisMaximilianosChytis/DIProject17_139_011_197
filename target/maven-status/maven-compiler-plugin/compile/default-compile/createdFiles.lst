@@ -5,10 +5,12 @@ heatmap/graphics/AddTransparency$1.class
 heatmap/graphics/ImageGrid.class
 heatmap/graphics/ImageMerge.class
 mqttcom/Test.class
+JDBC1/JDBC1.class
 heatmap/values/CellInfo.class
 JDBC/JDBC.class
 csvconvert/CSVUpdate.class
 csvconvert/Xml2Csv.class
 heatmap/HeatmapApp.class
 csvconvert/RandomGaussian.class
+JDBC1/JDBC2.class
 heatmap/values/CreateHeatMapValues.class

@@ -27,8 +27,8 @@ public class ImageGrid {
                 g2d.setColor(Color.BLACK);
 //                    Rectangle2D.Double rect = new Rectangle2D.Double(x, y, getWidth(), getHeight());
                 g2d.draw(new Rectangle2D.Double(x, y, dest.getWidth(), dest.getHeight()));
-                System.out.println(cellWidth);
-                System.out.println(cellHeight);
+//                System.out.println(cellWidth);
+//                System.out.println(cellHeight);
 
             }
         }

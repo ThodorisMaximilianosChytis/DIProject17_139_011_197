@@ -36,7 +36,7 @@ public class HeatmapApp {
 
         map.setColourScale(0.3);
         map.setHighValueColour(Color.GREEN);
-//        map.setLowValueColour(Color.RED);
+        map.setLowValueColour(Color.RED);
         map.setChartMargin(0);
 
 

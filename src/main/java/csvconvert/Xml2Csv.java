@@ -24,8 +24,8 @@ public class Xml2Csv {
     private File xmlSource;
 
     public Xml2Csv(String style, String source){
-        System.out.println(style);
-        System.out.println(source);
+//        System.out.println(style);
+//        System.out.println(source);
 
         stylesheet = new File(style);
         xmlSource = new File(source);

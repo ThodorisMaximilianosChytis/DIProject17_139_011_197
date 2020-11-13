@@ -41,7 +41,7 @@ public class CreateHeatMapValues {
 
             CSVReader reader = new CSVReader(new FileReader(this.inputFile));
             this.csvBody = reader.readAll();
-            System.out.println(this.csvBody.size());
+//            System.out.println(this.csvBody.size());
             this.nofrows=(this.csvBody.size());
             reader.close();
         }
@@ -53,8 +53,8 @@ public class CreateHeatMapValues {
                 double differenceY = EdgeCoordinates.get("maxcor").getY() - EdgeCoordinates.get("mincor").getY();
                 double differenceX = EdgeCoordinates.get("maxcor").getX() - EdgeCoordinates.get("mincor").getX();
 
-                System.out.println(differenceX);
-                System.out.println(differenceY);
+//                System.out.println(differenceX);
+//                System.out.println(differenceY);
 //            System.out.println((Coordinates.getY()));
 
                 int savefromunderflow = 1000;
@@ -67,18 +67,18 @@ public class CreateHeatMapValues {
                 double Ydistance = savefromunderflow * Coordinates.getY() - savefromunderflow * EdgeCoordinates.get("mincor").getY();
 
 
-                System.out.println(Xpercell);
-                System.out.println(Ypercell);
-//
-                System.out.println(Xdistance);
-                System.out.println(Ydistance);
+//                System.out.println(Xpercell);
+//                System.out.println(Ypercell);
+////
+//                System.out.println(Xdistance);
+//                System.out.println(Ydistance);
 
 
                 double latpercel = Xdistance / Xpercell;
                 double longpercel = Ydistance / Ypercell;
 
-                System.out.println(latpercel);
-                System.out.println(longpercel);
+//                System.out.println(latpercel);
+//                System.out.println(longpercel);
 
                 return new Point((int) latpercel, (int) longpercel);
             }
@@ -100,7 +100,7 @@ public class CreateHeatMapValues {
                     Point2D.Double Coordinates = new Point2D.Double(Double.parseDouble(csvBody.get(row)[latcolumn]) , Double.parseDouble(csvBody.get(row)[longcolumn] ) ) ;
                     if ( (temp = CalculateGridCell( Coordinates ) )!=null) {
 
-                        System.out.println("Row=" + row + " xcell=" + (temp.getX()) + " || ycell=" + (temp.getY()));
+//                        System.out.println("Row=" + row + " xcell=" + (temp.getX()) + " || ycell=" + (temp.getY()));
 
                         if (Values[(int) temp.getX()][(int) temp.getY()]==null){
                             Values[(int) temp.getX()][(int) temp.getY()] = new CellInfo();
@@ -110,10 +110,9 @@ public class CreateHeatMapValues {
                         ValuesDatasum+= Double.parseDouble(csvBody.get(row)[datacolumn]);
 
 
-                    }else System.out.println("ROW = " + row + " OUT OF BOUNDS----------------------------------------------------");
-
-
-
+                    }else {
+//                        System.out.println("ROW = " + row + " OUT OF BOUNDS----------------------------------------------------");
+                    }
             }
 
         }
@@ -126,7 +125,7 @@ public class CreateHeatMapValues {
                     }else{
                         HeatmapData[j][i]=0;
                     }
-                    System.out.println(HeatmapData[j][i]);
+//                    System.out.println(HeatmapData[j][i]);
                 }
             }
 

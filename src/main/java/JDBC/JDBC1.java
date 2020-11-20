@@ -25,20 +25,11 @@ public class JDBC1 {
         System.out.println("Creating database...");
         stmt = conn.createStatement();
 
-        String sql = "CREATE DATABASE VEHICLE";
+        /* ama h database uparxei den thn dhmiourgei pali
+        apla afhsa tis ektupwseis gia aisthitikous logous */
+        String sql = "CREATE DATABASE IF NOT EXISTS VEHICLE";
         stmt.executeUpdate(sql);
         System.out.println("Database created successfully...");
-
-        /* sql = "DROP DATABASE VEHICLE";
-        stmt.executeUpdate(sql);
-        System.out.println("database dropped");
-        //Handle errors for JDBC
-        //Handle errors for Class.forName
-        //finally block used to close resources
-        if (stmt != null)
-            stmt.close();
-        if (conn != null)
-            conn.close(); */
 
         System.out.println("Goodbye!");
 

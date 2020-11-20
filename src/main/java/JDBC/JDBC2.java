@@ -27,7 +27,9 @@ public class JDBC2 {
             System.out.println("Creating table in given database...");
             stmt = conn.createStatement();
 
-            String sql = "CREATE TABLE VEHICLE " +
+            /* ama to table uparxei den to dhmiourgei pali
+            apla afhsa tis ektupwseis gia aisthitikous logous */
+            String sql = "CREATE TABLE IF NOT EXISTS VEHICLE" +
                     "(timestep DOUBLE, " +
                     " device_id INTEGER, " +
                     " real_lat DOUBLE, " +

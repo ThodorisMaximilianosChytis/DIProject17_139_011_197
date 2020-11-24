@@ -12,7 +12,7 @@ public class Publisher {
         String messageString = "Hello World from Java!";
 
         if (args.length == 2) {
-            messageString = args[1];git
+            messageString = args[1];
         }
 
 

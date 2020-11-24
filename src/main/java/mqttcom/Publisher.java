@@ -12,7 +12,7 @@ public class Publisher {
         String messageString = "Hello World from Java!";
 
         if (args.length == 2) {
-            messageString = args[1];
+            messageString = args[1];git
         }
 
 
@@ -23,7 +23,7 @@ public class Publisher {
         client.connect();
         MqttMessage message = new MqttMessage();
         message.setPayload(messageString.getBytes());
-        client.publish("roadinformation", message);
+        client.publish("roadinfoe2a", message);
 
         System.out.println("\tMessage '" + messageString + "' to roadinformation");
 

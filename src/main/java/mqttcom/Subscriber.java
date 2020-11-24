@@ -14,7 +14,7 @@ public class Subscriber {
         client.setCallback( new MqttCallBackOV() );
         client.connect();
 
-        client.subscribe("roadinformation");
+        client.subscribe("roadinfoa2e");
 
     }
 

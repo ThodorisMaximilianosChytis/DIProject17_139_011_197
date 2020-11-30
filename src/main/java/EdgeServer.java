@@ -5,6 +5,8 @@
 import com.opencsv.exceptions.CsvException;
 import csvconvert.Xml2Csv;
 import heatmap.HeatmapApp;
+import mqttcom.Subscriber;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,7 +15,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class EdgeServer {
-    public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException, CsvException {
+    public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException, CsvException, MqttException {
 
         String Answer;
         do {
@@ -33,12 +35,16 @@ public class EdgeServer {
 
         }
 
-        HeatmapApp RSSI = new HeatmapApp(6,"RSSI","./src/main/resources/Map.png");
-        RSSI.CreateMap();
+//        HeatmapApp RSSI = new HeatmapApp(6,"RSSI","./src/main/resources/Map.png");
+//        RSSI.CreateMap();
 
 
-        HeatmapApp Throughput = new HeatmapApp(7,"Throughput","./src/main/resources/Map.png");
-        Throughput.CreateMap();
+//        HeatmapApp Throughput = new HeatmapApp(7,"Throughput","./src/main/resources/Map.png");
+//        Throughput.CreateMap();
+
+        Subscriber sub = new Subscriber("127.0.0.1","8000");
+        sub.subscribeto("roadinfo26");
+        sub.subscribeto("roadinfo27");
 
 
 

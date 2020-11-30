@@ -3,19 +3,37 @@ package mqttcom;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class Subscriber {
 
-    public static void main(String[] args) throws MqttException {
+    MqttClient client;
 
-        System.out.println("== START SUBSCRIBER ==");
+    public Subscriber(String IP,String port) throws MqttException {
 
-        MqttClient client=new MqttClient("tcp://test.mosquitto.org:1883", MqttClient.generateClientId());
+        client = new MqttClient("tcp://" + IP + ":" + port , MqttClient.generateClientId(), new MemoryPersistence());
+
         client.setCallback( new MqttCallBackOV() );
-        client.connect();
-
-        client.subscribe("roadinfoa2e");
+        try {
+            client.connect();
+        } catch (MqttException e) {
+            System.out.println("Cannot connect to tcp://" + IP + ":" + port);
+            e.printStackTrace();
+        }
 
     }
+
+    public void subscribeto(String topic){
+        System.out.println("SUBSCRIBE to " + topic);
+        try {
+            client.subscribe(topic);
+        } catch (MqttException e) {
+            System.out.println("Cannot subscribe to " + topic);
+            e.printStackTrace();
+        }
+
+    }
+
+
 
 }

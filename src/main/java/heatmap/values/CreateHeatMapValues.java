@@ -53,9 +53,7 @@ public class CreateHeatMapValues {
                 double differenceY = EdgeCoordinates.get("maxcor").getY() - EdgeCoordinates.get("mincor").getY();
                 double differenceX = EdgeCoordinates.get("maxcor").getX() - EdgeCoordinates.get("mincor").getX();
 
-//                System.out.println(differenceX);
-//                System.out.println(differenceY);
-//            System.out.println((Coordinates.getY()));
+
 
                 int savefromunderflow = 1000;
 
@@ -67,18 +65,11 @@ public class CreateHeatMapValues {
                 double Ydistance = savefromunderflow * Coordinates.getY() - savefromunderflow * EdgeCoordinates.get("mincor").getY();
 
 
-//                System.out.println(Xpercell);
-//                System.out.println(Ypercell);
-////
-//                System.out.println(Xdistance);
-//                System.out.println(Ydistance);
 
 
                 double latpercel = Xdistance / Xpercell;
                 double longpercel = Ydistance / Ypercell;
 
-//                System.out.println(latpercel);
-//                System.out.println(longpercel);
 
                 return new Point((int) latpercel, (int) longpercel);
             }
@@ -90,17 +81,11 @@ public class CreateHeatMapValues {
         public void FillZ(int datacolumn, int latcolumn, int longcolumn) {
             int size = csvBody.size();
             for (int row = 2; row < size; row++) {
-//                int[] indeces = {row, column};
-
-//              System.out.println(csvBody.get(row)[latcolumn]);
-//              System.out.println(csvBody.get(row)[longcolumn]);
-
 
                     Point temp;
                     Point2D.Double Coordinates = new Point2D.Double(Double.parseDouble(csvBody.get(row)[latcolumn]) , Double.parseDouble(csvBody.get(row)[longcolumn] ) ) ;
                     if ( (temp = CalculateGridCell( Coordinates ) )!=null) {
 
-//                        System.out.println("Row=" + row + " xcell=" + (temp.getX()) + " || ycell=" + (temp.getY()));
 
                         if (Values[(int) temp.getX()][(int) temp.getY()]==null){
                             Values[(int) temp.getX()][(int) temp.getY()] = new CellInfo();
@@ -109,9 +94,6 @@ public class CreateHeatMapValues {
                         Values[(int) temp.getX()][(int) temp.getY()].add2Data( Double.parseDouble(csvBody.get(row)[datacolumn]) );
                         ValuesDatasum+= Double.parseDouble(csvBody.get(row)[datacolumn]);
 
-
-                    }else {
-//                        System.out.println("ROW = " + row + " OUT OF BOUNDS----------------------------------------------------");
                     }
             }
 

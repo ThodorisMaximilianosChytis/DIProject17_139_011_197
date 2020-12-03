@@ -3,34 +3,50 @@ package mqttcom;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class Publisher {
 
+    MqttClient client;
 
-    public static void main(String[] args) throws MqttException {
+    public Publisher(String IP,String port)  {
 
-        String messageString = "Hello World from Java!";
 
-        if (args.length == 2) {
-            messageString = args[1];
+
+        try {
+            client = new MqttClient("tcp://" + IP + ":" + port , MqttClient.generateClientId(), new MemoryPersistence());
+            client.connect();
+        } catch (MqttException e) {
+            System.out.println("Cannot connect to tcp://" + IP + ":" + port);
+            e.printStackTrace();
+        }
+
+    }
+    public void publishto(String topic, String messageString){
+
+        System.out.println("PUBLISHER to " + topic);
+
+        MqttMessage message = new MqttMessage();
+        message.setPayload(messageString.getBytes());
+
+        try {
+            client.publish("roadinfoe2a", message);
+        } catch (MqttException e) {
+            System.out.println("Error publishing to " + topic);
+            e.printStackTrace();
         }
 
 
-        System.out.println("== START PUBLISHER ==");
+    }
 
-
-        MqttClient client = new MqttClient("tcp://test.mosquitto.org:1883", MqttClient.generateClientId());
-        client.connect();
-        MqttMessage message = new MqttMessage();
-        message.setPayload(messageString.getBytes());
-        client.publish("roadinfoe2a", message);
-
-        System.out.println("\tMessage '" + messageString + "' to roadinformation");
-
-        client.disconnect();
-
-        System.out.println("== END PUBLISHER ==");
-
+    public void Disconnect(){
+        try {
+            client.disconnect();
+        } catch (MqttException e) {
+            System.out.println("Error disconnecting");
+            e.printStackTrace();
+        }
+        System.out.println("END PUBLISHER");
     }
 
 }

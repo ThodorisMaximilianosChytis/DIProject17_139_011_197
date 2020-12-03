@@ -9,12 +9,11 @@ public class Subscriber {
 
     MqttClient client;
 
-    public Subscriber(String IP,String port) throws MqttException {
+    public Subscriber(String IP,String port){
 
-        client = new MqttClient("tcp://" + IP + ":" + port , MqttClient.generateClientId(), new MemoryPersistence());
-
-        client.setCallback( new MqttCallBackOV() );
         try {
+            client = new MqttClient("tcp://" + IP + ":" + port , MqttClient.generateClientId(), new MemoryPersistence());
+            client.setCallback( new MqttCallBackOV() );
             client.connect();
         } catch (MqttException e) {
             System.out.println("Cannot connect to tcp://" + IP + ":" + port);

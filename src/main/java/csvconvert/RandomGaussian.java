@@ -7,13 +7,6 @@ import java.util.Random;
 import static java.lang.Math.sqrt;
 
 
-/**
- Generate pseudo-random floating point values, with an
- approximately Gaussian (normal) distribution.
-
- Many physical measurements have an approximately Gaussian
- distribution; this provides a way of simulating such values.
- */
 public class RandomGaussian {
 
     public double MEAN;

@@ -27,18 +27,18 @@ public class AddTransparency
 
     }
 
-    private Image TransformGrayToTransparency(BufferedImage image){
-        ImageFilter filter = new RGBImageFilter()
-        {
-            public final int filterRGB(int x, int y, int rgb)
-            {
-                return (rgb << 8) & 0xFF000000;
-            }
-        };
-
-        ImageProducer ip = new FilteredImageSource(image.getSource(), filter);
-        return Toolkit.getDefaultToolkit().createImage(ip);
-    }
+//    private Image TransformGrayToTransparency(BufferedImage image){
+//        ImageFilter filter = new RGBImageFilter()
+//        {
+//            public final int filterRGB(int x, int y, int rgb)
+//            {
+//                return (rgb << 8) & 0xFF000000;
+//            }
+//        };
+//
+//        ImageProducer ip = new FilteredImageSource(image.getSource(), filter);
+//        return Toolkit.getDefaultToolkit().createImage(ip);
+//    }
 
     private Image TransformColorToTransparency(BufferedImage image, Color c1, Color c2){
         // Primitive test, just an example

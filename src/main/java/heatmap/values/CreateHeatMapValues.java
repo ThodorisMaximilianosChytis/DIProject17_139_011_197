@@ -50,11 +50,12 @@ public class CreateHeatMapValues {
             if (Coordinates.getX() <= EdgeCoordinates.get("maxcor").getX() && Coordinates.getY() <= EdgeCoordinates.get("maxcor").getY()
                     && Coordinates.getX() >= EdgeCoordinates.get("mincor").getX() && Coordinates.getY() >= EdgeCoordinates.get("mincor").getY()) {
 
+
                 double differenceY = EdgeCoordinates.get("maxcor").getY() - EdgeCoordinates.get("mincor").getY();
                 double differenceX = EdgeCoordinates.get("maxcor").getX() - EdgeCoordinates.get("mincor").getX();
 
 
-
+                //degrees<360 so no overflow thus mult 100 used to save from underflow
                 int savefromunderflow = 1000;
 
                 double Xpercell = savefromunderflow * differenceX /  Grid.getX();
@@ -99,7 +100,7 @@ public class CreateHeatMapValues {
 
         }
         public void Zvalperc(double[][] HeatmapData){
-
+            //Create correct grid and cell values by indexing
             for (int i=0; i<Grid.getX(); i++){
                 for(int j=0; j<Grid.getY() ; j++) {
                     if (Values[i][(int) Grid.getY()-1-j] != null) {

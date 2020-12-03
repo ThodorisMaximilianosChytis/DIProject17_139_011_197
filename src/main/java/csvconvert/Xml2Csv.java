@@ -35,6 +35,8 @@ public class Xml2Csv {
 
     }
     public void Convert(String dest) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+
+        //Convert xml2csv
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(xmlSource);
@@ -43,15 +45,22 @@ public class Xml2Csv {
         Source source = new DOMSource(document);
         Result outputTarget = new StreamResult(new File(dest));
         transformer.transform(source, outputTarget);
+
+        //Add RSSi ,Throughput
         try {
             WriteRSSI_Throughput(dest);
         } catch (CsvException e) {
+           System.out.println("Could not write to csv file");
             e.printStackTrace();
         }
     }
 
     public void WriteRSSI_Throughput(String dest) throws IOException, CsvException {
+
+        //prepare to write
         CSVUpdate RSSIWriter = new CSVUpdate(dest);
+
+        //random normal dist : sqrt(1600/9) = 40   60+-40 e [20,100]
         RandomGaussian NormRSSI = new RandomGaussian(60.0f, 1600.0f/9.0f);
 
         String s;

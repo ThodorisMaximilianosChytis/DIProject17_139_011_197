@@ -35,7 +35,7 @@ public class CSVUpdate {
         reader.close();
     }
 
-    private void Writefile()throws IOException, CsvException{
+    private void Writefile()throws IOException{
 // Write to CSV file which is open
         CSVWriter writer = new CSVWriter(new FileWriter(this.inputFile));
         writer.writeAll(this.csvBody);
@@ -43,7 +43,7 @@ public class CSVUpdate {
         writer.close();
     }
 
-    public void update(String replace, int row, int col) throws IOException, CsvException {
+    public void update(String replace, int row, int col) throws IOException {
         this.csvBody.get(row)[col] = replace;
         this.Writefile();
     }

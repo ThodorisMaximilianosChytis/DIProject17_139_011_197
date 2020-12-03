@@ -17,8 +17,10 @@ public class RandomGaussian {
         VARIANCE = variance;
 
     }
+    //random
     private Random fRandom = new Random();
 
+    //shift values into wanted area
     public double getGaussian(){
         return MEAN + fRandom.nextGaussian() * sqrt(VARIANCE);
     }

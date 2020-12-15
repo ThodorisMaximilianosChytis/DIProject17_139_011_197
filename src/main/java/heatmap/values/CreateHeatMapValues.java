@@ -86,6 +86,9 @@ public class CreateHeatMapValues {
                     Point temp;
                     Point2D.Double Coordinates = new Point2D.Double(Double.parseDouble(csvBody.get(row)[latcolumn]) , Double.parseDouble(csvBody.get(row)[longcolumn] ) ) ;
                     if ( (temp = CalculateGridCell( Coordinates ) )!=null) {
+                        System.out.println("x=" + temp.getX() + "- y=" + temp.getY());
+
+//                        System.out.println(temp.get&());
 
 
                         if (Values[(int) temp.getX()][(int) temp.getY()]==null){

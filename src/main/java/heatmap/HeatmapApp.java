@@ -74,7 +74,7 @@ public class HeatmapApp {
 
         Point GRIDWD = new Point(10,4);
         CreateHeatMapValues Val = new CreateHeatMapValues("Output/all_vehicles.csv",new Point2D.Double(23.77539,37.9686200), new Point2D.Double(23.7647600,37.9668800),GRIDWD);
-        Val.FillZ(datacolumn,2,3);
+        Val.FillZ(datacolumn,3,2);
 
         File inFile = new File(BackgroundMap);
         BufferedImage image = ImageIO.read(inFile);
@@ -90,13 +90,13 @@ public class HeatmapApp {
         Val.Zvalperc(HeatmapData);
 
         ColorHeatmapApp(HeatmapData);
-
+//
         AddTransparency at = new AddTransparency("./src/main/resources/java-heat-chart.png", "./src/main/resources/transparent_"+ Name + ".png");
-
+//
         ImageMerge please = new ImageMerge(BackgroundMap,"./src/main/resources/transparent_" + Name + ".png","./src/main/resources/" + Name + "Map.png");
-
+//
         ImageGrid comeon =  new ImageGrid("./src/main/resources/"+ Name + "Map.png","./Output/" + Name + "Heatmap.png");
-
+//
         openandDisplayPhoto("./Output/" + Name + "Heatmap.png");
 
 

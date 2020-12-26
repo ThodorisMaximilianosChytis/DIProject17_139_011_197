@@ -30,7 +30,7 @@ public class Publisher {
         message.setPayload(messageString.getBytes());
 
         try {
-            client.publish("roadinfoe2a", message);
+            client.publish("roadinfo", message);
         } catch (MqttException e) {
             System.out.println("Error publishing to " + topic);
             e.printStackTrace();

@@ -6,9 +6,11 @@ import JDBC.JDBC;
 import com.opencsv.exceptions.CsvException;
 import csvconvert.Xml2Csv;
 import heatmap.HeatmapApp;
+import mqttcom.Publisher;
 import mqttcom.Subscriber;
 import org.xml.sax.SAXException;
 
+import javax.sound.sampled.Port;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
@@ -80,7 +82,14 @@ public class EdgeServer {
             System.out.println("Please Enter topic2 : Hint <roadinfo27>");
             sub.subscribeto(scanf.nextLine());
 
+//            Publisher pub = new Publisher(IP, Port);
+//
+//            pub.publishto("roadinfo","mwre les");
+
+
         }
+
+
 
 
     }

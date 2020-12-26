@@ -31,8 +31,8 @@ public class CreateHeatMapValues {
             EdgeCoordinates.put("maxcor",maxcor);
             EdgeCoordinates.put("mincor",mincor);
 
-            Values = new CellInfo[(int) _Grid.getX()][(int) _Grid.getY()];
-
+//            Values = new CellInfo[(int) _Grid.getX()][(int) _Grid.getY()];
+            Values = new CellInfo[(int) _Grid.getY()][(int) _Grid.getX()];
             inputFile = new File(csvfile);
             this.Readfile();
         }
@@ -47,6 +47,9 @@ public class CreateHeatMapValues {
         }
 
         private Point CalculateGridCell(Point2D.Double Coordinates){
+//            System.out.println(Coordinates.getX());
+//            System.out.println(EdgeCoordinates.get("maxcor").getX());
+
             if (Coordinates.getX() <= EdgeCoordinates.get("maxcor").getX() && Coordinates.getY() <= EdgeCoordinates.get("maxcor").getY()
                     && Coordinates.getX() >= EdgeCoordinates.get("mincor").getX() && Coordinates.getY() >= EdgeCoordinates.get("mincor").getY()) {
 
@@ -68,11 +71,16 @@ public class CreateHeatMapValues {
 
 
 
-                double latpercel = Xdistance / Xpercell;
-                double longpercel = Ydistance / Ypercell;
+//                double latpercel = Xdistance / Xpercell;
+//                double longpercel = Ydistance / Ypercell;
+
+                double longpercel = Xdistance / Xpercell;
+                double latpercel = Ydistance / Ypercell;
 
 
-                return new Point((int) latpercel, (int) longpercel);
+
+//                return new Point((int) latpercel, (int) longpercel);
+                return new Point((int) longpercel, (int) latpercel);
             }
             return null;
         }
@@ -84,34 +92,63 @@ public class CreateHeatMapValues {
             for (int row = 2; row < size; row++) {
 
                     Point temp;
-                    Point2D.Double Coordinates = new Point2D.Double(Double.parseDouble(csvBody.get(row)[latcolumn]) , Double.parseDouble(csvBody.get(row)[longcolumn] ) ) ;
+//                    Point2D.Double Coordinates = new Point2D.Double(Double.parseDouble(csvBody.get(row)[latcolumn]) , Double.parseDouble(csvBody.get(row)[longcolumn] ) ) ;
+                    Point2D.Double Coordinates = new Point2D.Double(Double.parseDouble(csvBody.get(row)[longcolumn]) , Double.parseDouble(csvBody.get(row)[latcolumn] ) ) ;
+
                     if ( (temp = CalculateGridCell( Coordinates ) )!=null) {
-                        System.out.println("x=" + temp.getX() + "- y=" + temp.getY());
+//                        System.out.println("x=" + temp.getX() + "- y=" + temp.getY());
 
 //                        System.out.println(temp.get&());
 
-
-                        if (Values[(int) temp.getX()][(int) temp.getY()]==null){
-                            Values[(int) temp.getX()][(int) temp.getY()] = new CellInfo();
+                        if (Values[(int) temp.getY()][(int) temp.getX()]==null){
+                            Values[(int) temp.getY()][(int) temp.getX()] = new CellInfo();
                         }
-                        Values[(int) temp.getX()][(int) temp.getY()].addVisitor();
-                        Values[(int) temp.getX()][(int) temp.getY()].add2Data( Double.parseDouble(csvBody.get(row)[datacolumn]) );
+                        Values[(int) temp.getY()][(int) temp.getX()].addVisitor();
+                        Values[(int) temp.getY()][(int) temp.getX()].add2Data( Double.parseDouble(csvBody.get(row)[datacolumn]) );
                         ValuesDatasum+= Double.parseDouble(csvBody.get(row)[datacolumn]);
+
+
+
+//                        if (Values[(int) temp.getX()][(int) temp.getY()]==null){
+//                            Values[(int) temp.getX()][(int) temp.getY()] = new CellInfo();
+//                        }
+//                        Values[(int) temp.getX()][(int) temp.getY()].addVisitor();
+//                        Values[(int) temp.getX()][(int) temp.getY()].add2Data( Double.parseDouble(csvBody.get(row)[datacolumn]) );
+//                        ValuesDatasum+= Double.parseDouble(csvBody.get(row)[datacolumn]);
 
                     }
             }
 
         }
+
+
+
+//        public void Zvalperc(double[][] HeatmapData){
+//            //Create correct grid and cell values by indexing
+//            for (int i=0; i<Grid.getX(); i++){
+//                for(int j=0; j<Grid.getY() ; j++) {
+//                    if (Values[i][(int) Grid.getY()-1-j] != null) {
+//                        HeatmapData[j][i] = 100 * Values[i][(int) Grid.getY()-1-j].getDATASUM() / ValuesDatasum;
+//                    }else{
+//                        HeatmapData[j][i]=0;
+//                    }
+////                    System.out.println(HeatmapData[j][i]);
+//                }
+//            }
+//
+//
+//        }
+
         public void Zvalperc(double[][] HeatmapData){
             //Create correct grid and cell values by indexing
-            for (int i=0; i<Grid.getX(); i++){
-                for(int j=0; j<Grid.getY() ; j++) {
-                    if (Values[i][(int) Grid.getY()-1-j] != null) {
-                        HeatmapData[j][i] = 100 * Values[i][(int) Grid.getY()-1-j].getDATASUM() / ValuesDatasum;
+            for (int i=0; i<Grid.getY(); i++){
+                for(int j=0; j<Grid.getX() ; j++) {
+                    if (Values[(int) Grid.getY() - i -1][j] != null) {
+                        HeatmapData[i][j] = 100 * Values[(int) Grid.getY() - i -1][j].getDATASUM() / ValuesDatasum;
                     }else{
-                        HeatmapData[j][i]=0;
+                        HeatmapData[i][j]=0;
                     }
-//                    System.out.println(HeatmapData[j][i]);
+//                    System.out.println(HeatmapData[i][j]);
                 }
             }
 

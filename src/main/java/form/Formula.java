@@ -4,13 +4,13 @@
 //
 //public class Formula {
 //
-//    private long int R = 6371 * (10 ^ 6);
+//    private int R = 6371 * (Math.pow(10, 6));
 //    public double late;
 //    public double longe;
 //
 //    public Formula ( double latstart, double longstart, double angle, double speed ) {
 //
-//        long double d = speed/R;
+//        double d = speed/R;
 //        double latstartradian = Math.toRadians(latstart);
 //        double longstartradian = Math.toRadians(longstart);
 //

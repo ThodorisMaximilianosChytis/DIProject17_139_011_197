@@ -12,7 +12,7 @@ public class MqttCallBackOV implements MqttCallback {
 
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
         String str = new String(mqttMessage.getPayload());
-        //System.out.println("Message received:\t"+ new String(mqttMessage.getPayload()) );
+          //System.out.println("Message received:\t"+ new String(mqttMessage.getPayload()) );
         System.out.println("Message received:\t"+ str );
 
         String[] arrOfStr = str.split("|", 8);
@@ -28,6 +28,11 @@ public class MqttCallBackOV implements MqttCallback {
         double Throughput = Double.parseDouble(arrOfStr[7]);
 
         Formula f = new Formula(lat,lon,angle,speed);
+
+        time = time + 1.0;
+
+        //the message we send to android
+        String messtosend = String.valueOf(f.late) + "|" + String.valueOf(f.longe) + "|" +  String.valueOf(RSSIpred) + "|" + String.valueOf(Throughputpred) + "|" + String.valueOf(time) + "|";
     }
 
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {

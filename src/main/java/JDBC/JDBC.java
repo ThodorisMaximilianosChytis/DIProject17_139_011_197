@@ -51,6 +51,24 @@ public class JDBC {
 
     }
 
+    private void Insert(double timestep, int device_id, double real_lat, double real_long, double predicted_lat, double predicted_long
+    , double real_RSSI, double real_throughput, double predicted_RSSI, double predicted_throughput) {
+        System.out.println("Inserting in table " + TABLEN +  " in " + DATABASEN);
+        ExecuteQuery("INSERT INTO Registration " +
+                "VALUES ("
+                + timestep + ","
+                + device_id + ","
+                + real_lat + ","
+                + real_long + ","
+                + predicted_lat + ","
+                + predicted_long + ","
+                + real_RSSI + ","
+                + real_throughput + ","
+                + predicted_RSSI + ","
+                + predicted_throughput + ")");
+        System.out.println("Done");
+    }
+
     private void OpenConnection(){
         System.out.println("Connecting...");
         try {

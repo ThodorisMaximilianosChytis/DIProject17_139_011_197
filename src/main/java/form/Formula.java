@@ -1,16 +1,23 @@
 package form;
 
-import java.util.*;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
+import java.sql.SQLException;
+
 
 public class Formula {
 
-    private int R = 6371 * (Math.pow(10, 6));
-    public double late;
-    public double longe;
+
+    private double late;
+    private double longe;
 
     public Formula ( double latstart, double longstart, double angle, double speed ) {
 
-        double d = speed/R;
+        double r = 6371.0 * (Math.pow(10, 6));
+        double d = speed/ r;
         double latstartradian = Math.toRadians(latstart);
         double longstartradian = Math.toRadians(longstart);
 
@@ -22,6 +29,7 @@ public class Formula {
 
 
     }
+
 
     public double getlatend() {
         return late;
@@ -42,4 +50,9 @@ public class Formula {
 //
 //        return new Formula(Math.toDegrees(latendradian),Math.toDegrees(longendradian));
 //    }
+    public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException, SQLException, ClassNotFoundException {
+        Formula f = new Formula(23.772976,37.966995, 79.748801, 1.0);
+        System.out.println(f.getlatend());
+        System.out.println(f.getlongend());
+    }
 }

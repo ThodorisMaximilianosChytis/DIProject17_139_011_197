@@ -18,15 +18,18 @@ import java.io.IOException;
 public class HeatmapApp {
 
     private int datacolumn;
+    CreateHeatMapValues Val;
     private  String Name;
     private double cellHeight;
     private double cellWidth;
     private String BackgroundMap;
+    double[][] HeatmapData;
 
     public HeatmapApp(int _datacolumn, String _Name, String _BackgroundMap) throws IOException {
         datacolumn = _datacolumn;
         Name = _Name;
         BackgroundMap = _BackgroundMap;
+        Val=null;
 
     }
 
@@ -73,7 +76,7 @@ public class HeatmapApp {
 
 
         Point GRIDWD = new Point(10,4);
-        CreateHeatMapValues Val = new CreateHeatMapValues("Output/all_vehicles.csv",new Point2D.Double(23.77539,37.9686200), new Point2D.Double(23.7647600,37.9668800),GRIDWD);
+        Val = new CreateHeatMapValues("Output/all_vehicles.csv",new Point2D.Double(23.77539,37.9686200), new Point2D.Double(23.7647600,37.9668800),GRIDWD);
         Val.FillZ(datacolumn,3,2);
 
         File inFile = new File(BackgroundMap);
@@ -84,7 +87,7 @@ public class HeatmapApp {
 
 
 
-        double[][] HeatmapData;
+
         HeatmapData = new double[ (int) GRIDWD.getY()][(int)GRIDWD.getX()];
 
         Val.Zvalperc(HeatmapData);
@@ -99,9 +102,16 @@ public class HeatmapApp {
 //
         openandDisplayPhoto("./Output/" + Name + "Heatmap.png");
 
-
     }
 
+    public CreateHeatMapValues getVal() {
+        return Val;
+    }
 
-
+    public double getHeatmapCelldata(int i,int j) {
+        if (Val!=null){
+            return HeatmapData[(int)Val.getGrid().getY()- i -1][j]/100 * Val.getValuesDatasum();
+        }
+        return -1.0;
+    }
 }

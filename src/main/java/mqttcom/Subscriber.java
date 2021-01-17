@@ -1,16 +1,20 @@
 package mqttcom;
 
 
+import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class Subscriber {
 
     MqttClient client;
+    HandleMqttMessages handlemess;
 
-    public Subscriber(String IP,String port){
 
+    public Subscriber(String IP,String port,HandleMqttMessages _handlemess){
+        handlemess =_handlemess;
         try {
             client = new MqttClient("tcp://" + IP + ":" + port , MqttClient.generateClientId(), new MemoryPersistence());
             client.setCallback( new MqttCallBackOV() );
@@ -22,13 +26,21 @@ public class Subscriber {
 
     }
 
-    public void subscribeto(String topic){
+    public void subscribeto(String topic) {
         System.out.println("SUBSCRIBE to " + topic);
+
         try {
-            client.subscribe(topic);
-        } catch (MqttException e) {
+            this.client.subscribe(topic, new IMqttMessageListener() {
+                @Override
+                public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+                    System.out.println("Message received:\t"+ new String(mqttMessage.getPayload()) );
+
+                    handlemess.handleMessage(new String(mqttMessage.getPayload()));
+                }
+            });
+        } catch (MqttException var3) {
             System.out.println("Cannot subscribe to " + topic);
-            e.printStackTrace();
+            var3.printStackTrace();
         }
 
     }

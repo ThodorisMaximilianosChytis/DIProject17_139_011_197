@@ -46,7 +46,7 @@ public class CreateHeatMapValues {
             reader.close();
         }
 
-        private Point CalculateGridCell(Point2D.Double Coordinates){
+        public Point CalculateGridCell(Point2D.Double Coordinates){
 //            System.out.println(Coordinates.getX());
 //            System.out.println(EdgeCoordinates.get("maxcor").getX());
 
@@ -155,8 +155,11 @@ public class CreateHeatMapValues {
 
         }
 
+    public double getValuesDatasum() {
+        return ValuesDatasum;
+    }
 
-        public void ValPrintZ() {
+    public void ValPrintZ() {
             for (int i=0; i<Grid.getX(); i++){
                 for(int j=0; j<Grid.getY() ; j++) {
                     if (Values[i][j] != null){
@@ -169,4 +172,12 @@ public class CreateHeatMapValues {
             }
         }
 
+    public CellInfo[][] getValues() {
+        return Values;
+    }
+
+
+    public Point getGrid() {
+        return Grid;
+    }
 }

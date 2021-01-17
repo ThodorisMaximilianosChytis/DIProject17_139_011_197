@@ -5,7 +5,10 @@
 import JDBC.JDBC;
 import com.opencsv.exceptions.CsvException;
 import csvconvert.Xml2Csv;
+import form.EndValues;
 import heatmap.HeatmapApp;
+import heatmap.values.CreateHeatMapValues;
+import mqttcom.HandleMqttMessages;
 import mqttcom.Publisher;
 import mqttcom.Subscriber;
 import org.xml.sax.SAXException;
@@ -16,25 +19,28 @@ import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class EdgeServer {
-    public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException, SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException, SQLException, ClassNotFoundException, InterruptedException {
 
-        if(DoAJob("Do you want to convert csv files?").equals("Y")){
-
-            Xml2Csv Converter = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/all_vehicles.xml");
-            Converter.Convert("Output/all_vehicles.csv");
-            Xml2Csv Converter1 = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/vehicle_26.xml");
-            Converter1.Convert("Output/vehicle_26.csv");
-            Xml2Csv Converter2 = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/vehicle_27.xml");
-            Converter2.Convert("Output/vehicle_27.csv");
-
-        }
-
+//        if(DoAJob("Do you want to convert csv files?").equals("Y")){
+//
+//            Xml2Csv Converter = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/all_vehicles.xml");
+//            Converter.Convert("Output/all_vehicles.csv");
+//            Xml2Csv Converter1 = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/vehicle_26.xml");
+//            Converter1.Convert("Output/vehicle_26.csv");
+//            Xml2Csv Converter2 = new Xml2Csv("Input Data/avstyle.xsl", "Input Data/vehicle_27.xml");
+//            Converter2.Convert("Output/vehicle_27.csv");
+//
+//        }
+//
+        HeatmapApp RSSI = null;
+        HeatmapApp Throughput = null;
 
         if(DoAJob("Do you want to create HeatMaps?").equals("Y")) {
 
-            HeatmapApp RSSI = new HeatmapApp(6,"RSSI","./src/main/resources/Map.png");
+            RSSI = new HeatmapApp(6,"RSSI","./src/main/resources/Map.png");
             try {
                 RSSI.CreateMap();
             } catch (CsvException e) {
@@ -42,7 +48,7 @@ public class EdgeServer {
                 e.printStackTrace();
             }
 
-            HeatmapApp Throughput = new HeatmapApp(7,"Throughput","./src/main/resources/Map.png");
+            Throughput = new HeatmapApp(7,"Throughput","./src/main/resources/Map.png");
             try {
                 Throughput.CreateMap();
             } catch (CsvException e) {
@@ -53,7 +59,7 @@ public class EdgeServer {
         }
 
 
-        if(DoAJob("Do you want to start Android communication").equals("Y")) {
+        if(DoAJob("Do you want to start Android communication").equals("Y") && RSSI!=null && Throughput!=null) {
 
             //Create Database and Table
             JDBC mysqldb = new JDBC("newuser","Sdi17_139_011_197@");
@@ -74,7 +80,9 @@ public class EdgeServer {
             }
 
             //Subscribe
-            Subscriber sub = new Subscriber(IP,Port);
+
+
+            Subscriber sub = new Subscriber(IP, Port, new HandleMqttMessages(mysqldb,new EndValues(RSSI,Throughput)));
 
             System.out.println("Please Enter topic1 : Hint <roadinfo26>");
             sub.subscribeto(scanf.nextLine());
@@ -84,7 +92,11 @@ public class EdgeServer {
 
 //            Publisher pub = new Publisher(IP, Port);
 //
-//            pub.publishto("roadinfo","mwre les");
+//            while(true) {
+//                pub.publishto("roadinfo", "mwre les");
+//                TimeUnit.MILLISECONDS.sleep(500
+//                );
+//            }
 
 
         }

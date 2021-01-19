@@ -82,7 +82,7 @@ public class EdgeServer {
             //Subscribe
 
 
-            Subscriber sub = new Subscriber(IP, Port, new HandleMqttMessages(mysqldb,new EndValues(RSSI,Throughput)));
+            Subscriber sub = new Subscriber(IP, Port, new HandleMqttMessages(mysqldb,new EndValues(RSSI.getVal(),Throughput.getVal())));
 
             System.out.println("Please Enter topic1 : Hint <roadinfo26>");
             sub.subscribeto(scanf.nextLine());

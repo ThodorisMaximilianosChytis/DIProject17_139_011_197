@@ -1,6 +1,7 @@
 package form;
 
 import heatmap.HeatmapApp;
+import heatmap.values.CreateHeatMapValues;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -16,12 +17,12 @@ public class EndValues {
 
     private double late;
     private double longe;
-    private HeatmapApp RSSI;
-    private HeatmapApp Throughput;
+    private CreateHeatMapValues RSSI;
+    private CreateHeatMapValues Throughput;
 
 
 
-    public EndValues(HeatmapApp rssi, HeatmapApp throughput) {
+    public EndValues(CreateHeatMapValues rssi, CreateHeatMapValues throughput) {
         RSSI = rssi;
         Throughput = throughput;
     }
@@ -73,24 +74,18 @@ public class EndValues {
     }
 
     public double GetpreRSSIorThroughput(Point2D.Double Coordinates,String choice){
-        Point cell = RSSI.getVal().CalculateGridCell(Coordinates);
+        if (RSSI==null || Throughput==null)
+            return -2.0;
+        Point cell = RSSI.CalculateGridCell(Coordinates);
 
-        if ( cell!=null ) {
+        if ( cell!=null) {
             if (choice.equals("RSSI"))
-                return RSSI.getHeatmapValCellinfo((int) cell.getY(), (int) cell.getX());
+                return RSSI.getValCellinfo((int) cell.getY(), (int) cell.getX());
             else if (choice.equals("THROUGHPUT")) {
-                return Throughput.getHeatmapValCellinfo((int) cell.getY(), (int) cell.getX());
+                return Throughput.getValCellinfo((int) cell.getY(), (int) cell.getX());
             }
         }
         return -1.0;
     }
 
-
-//
-//    public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException, SQLException, ClassNotFoundException {
-//        EndValues f = new EndValues(RSSI, Throughput);
-//        f.formula(23.772976,37.966995, 79.748801, 1.0);
-//        System.out.println(f.getlatend());
-//        System.out.println(f.getlongend());
-//    }
 }

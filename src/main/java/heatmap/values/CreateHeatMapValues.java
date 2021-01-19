@@ -173,10 +173,14 @@ public class CreateHeatMapValues {
         }
 
     public CellInfo[][] getValues() {
-
             return Values;
     }
 
+
+    public double getValCellinfo(int i,int j) {          //exei thema
+            CellInfo[][] temp = this.getValues();
+            return temp[i][j].getMeanData();
+    }
 
     public Point getGrid() {
         return Grid;

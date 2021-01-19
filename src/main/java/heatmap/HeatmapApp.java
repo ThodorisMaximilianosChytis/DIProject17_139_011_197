@@ -109,13 +109,5 @@ public class HeatmapApp {
         return Val;
     }
 
-    public double getHeatmapValCellinfo(int i,int j) {          //exei thema
-        if (Val!=null){
-            CellInfo[][] temp = Val.getValues();
-            return temp[i][j].getMeanData();
-        }
-        return -1.0;
-    }
-
 
 }

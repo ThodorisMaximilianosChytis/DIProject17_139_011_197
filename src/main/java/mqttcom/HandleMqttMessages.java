@@ -34,23 +34,7 @@ public class HandleMqttMessages {
             oldValues = s.split("@", 8);
 //        //0 time, 1 id, 2 long,3 lat,4 angle,5 speed,6 RSSI,7 Throughput
 //
-//            double time = Double.parseDouble(oldValues[0]);
-//            int id = Integer.parseInt(oldValues[1]);
-//            double lon = Double.parseDouble(oldValues[2]);
-//            double lat = Double.parseDouble(oldValues[3]);
-//            double angle = Double.parseDouble(oldValues[4]);
-//            double speed = Double.parseDouble(oldValues[5]);
-//            double RSSI = Double.parseDouble(oldValues[6]);
-//            double Throughput = Double.parseDouble(oldValues[7]);
-//            System.out.println(time);
-//            System.out.println(id);
-//            System.out.println(lon);
-//            System.out.println(lat);
-//            System.out.println(angle);
-//            System.out.println(speed);
-//            System.out.println(RSSI);
-//            System.out.println(Throughput);
-//            if (newValues==null){
+
             System.out.println(oldValues[0] + "-------" + newValues[0]);
             if (Double.parseDouble(oldValues[0])== Double.parseDouble(newValues[0])){
                 System.out.println("HEREEEEEEEEEE");
@@ -69,14 +53,9 @@ public class HandleMqttMessages {
 //            }
             System.out.println("OLD     NEW");
             for (int i =0; i<=7 ; i++){
-
                 System.out.println(oldValues[i] + "     " + newValues[i]);
             }
 
-
-
-
-//        database.ExecuteQuery("");
 
         }
     }

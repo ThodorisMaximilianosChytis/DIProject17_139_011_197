@@ -173,7 +173,8 @@ public class CreateHeatMapValues {
         }
 
     public CellInfo[][] getValues() {
-        return Values;
+
+            return Values;
     }
 
 

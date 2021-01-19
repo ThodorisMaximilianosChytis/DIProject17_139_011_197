@@ -64,7 +64,7 @@ public class EdgeServer {
             //Create Database and Table
             JDBC mysqldb = new JDBC("newuser","Sdi17_139_011_197@");
             //Disconnect
-            mysqldb.EXIT();
+
 
             //Default IP:PORT
             String IP = "test.mosquitto.org";
@@ -98,6 +98,7 @@ public class EdgeServer {
 //                );
 //            }
 
+            //mysqldb.EXIT();
 
         }
 

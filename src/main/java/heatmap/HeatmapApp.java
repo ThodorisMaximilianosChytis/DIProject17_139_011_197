@@ -5,6 +5,7 @@ import com.opencsv.exceptions.CsvException;
 import heatmap.graphics.AddTransparency;
 import heatmap.graphics.ImageGrid;
 import heatmap.graphics.ImageMerge;
+import heatmap.values.CellInfo;
 import heatmap.values.CreateHeatMapValues;
 import org.tc33.jheatchart.HeatChart;
 
@@ -100,7 +101,7 @@ public class HeatmapApp {
 //
         ImageGrid comeon =  new ImageGrid("./src/main/resources/"+ Name + "Map.png","./Output/" + Name + "Heatmap.png");
 //
-        openandDisplayPhoto("./Output/" + Name + "Heatmap.png");
+//        openandDisplayPhoto("./Output/" + Name + "Heatmap.png");
 
     }
 
@@ -108,10 +109,13 @@ public class HeatmapApp {
         return Val;
     }
 
-    public double getHeatmapCelldata(int i,int j) {
+    public double getHeatmapValCellinfo(int i,int j) {          //exei thema
         if (Val!=null){
-            return HeatmapData[(int)Val.getGrid().getY()- i -1][j]/100 * Val.getValuesDatasum();
+            CellInfo[][] temp = Val.getValues();
+            return temp[i][j].getMeanData();
         }
         return -1.0;
     }
+
+
 }

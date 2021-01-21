@@ -22,6 +22,9 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class EdgeServer {
+    String topic1;
+    String topic2;
+
     public static void main(String[] args) throws ParserConfigurationException, TransformerException, SAXException, IOException, SQLException, ClassNotFoundException, InterruptedException {
 
 //        if(DoAJob("Do you want to convert csv files?").equals("Y")){
@@ -81,24 +84,26 @@ public class EdgeServer {
 
             //Subscribe
 
+            Publisher pub = new Publisher(IP, Port);
 
-            Subscriber sub = new Subscriber(IP, Port, new HandleMqttMessages(mysqldb,new EndValues(RSSI.getVal(),Throughput.getVal())));
+            Subscriber sub = new Subscriber(IP, Port, new HandleMqttMessages(mysqldb, pub ,new EndValues(RSSI.getVal(),Throughput.getVal())));
+
 
             System.out.println("Please Enter topic1 : Hint <roadinfo26>");
+
             sub.subscribeto(scanf.nextLine());
 
             System.out.println("Please Enter topic2 : Hint <roadinfo27>");
             sub.subscribeto(scanf.nextLine());
 
 //            Publisher pub = new Publisher(IP, Port);
-//
+
 //            while(true) {
 //                pub.publishto("roadinfo", "mwre les");
-//                TimeUnit.MILLISECONDS.sleep(500
-//                );
+//                TimeUnit.MILLISECONDS.sleep(250);
 //            }
 
-            //mysqldb.EXIT();
+//            mysqldb.EXIT();
 
         }
 

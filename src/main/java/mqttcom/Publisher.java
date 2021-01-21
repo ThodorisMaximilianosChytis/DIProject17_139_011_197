@@ -24,13 +24,14 @@ public class Publisher {
     }
     public void publishto(String topic, String messageString){
 
-        System.out.println("PUBLISHER to " + topic);
-
         MqttMessage message = new MqttMessage();
         message.setPayload(messageString.getBytes());
 
+        topic=topic + "/e2a";
+        System.out.println("PUBLISHER to " + topic);
+
         try {
-            client.publish("roadinfo", message);
+            client.publish(topic, message);
         } catch (MqttException e) {
             System.out.println("Error publishing to " + topic);
             e.printStackTrace();

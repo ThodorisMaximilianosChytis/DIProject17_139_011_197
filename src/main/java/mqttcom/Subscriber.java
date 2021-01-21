@@ -27,9 +27,11 @@ public class Subscriber {
     }
 
     public void subscribeto(String topic) {
-        System.out.println("SUBSCRIBE to " + topic);
-
+        handlemess.setTopic(topic);
         try {
+            topic = topic + "/a2e";
+            System.out.println("SUBSCRIBE to " + topic);
+
             this.client.subscribe(topic, new IMqttMessageListener() {
                 @Override
                 public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {

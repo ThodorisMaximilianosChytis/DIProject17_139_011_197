@@ -12,6 +12,15 @@ public class Subscriber {
     MqttClient client;
     HandleMqttMessages handlemess;
 
+    IMqttMessageListener messageListener = new IMqttMessageListener() {
+        @Override
+        public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+            System.out.println("Message received:\t"+ new String(mqttMessage.getPayload()) );
+
+            handlemess.handleMessage(new String(mqttMessage.getPayload()));
+        }
+    };
+
 
     public Subscriber(String IP,String port,HandleMqttMessages _handlemess){
         handlemess =_handlemess;
@@ -32,14 +41,7 @@ public class Subscriber {
             topic = topic + "/a2e";
             System.out.println("SUBSCRIBE to " + topic);
 
-            this.client.subscribe(topic, new IMqttMessageListener() {
-                @Override
-                public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-                    System.out.println("Message received:\t"+ new String(mqttMessage.getPayload()) );
-
-                    handlemess.handleMessage(new String(mqttMessage.getPayload()));
-                }
-            });
+            this.client.subscribe(topic, messageListener);
         } catch (MqttException var3) {
             System.out.println("Cannot subscribe to " + topic);
             var3.printStackTrace();

@@ -53,13 +53,16 @@ public class EndValues {
     }
 
     public void formula (double latstart, double longstart, double angle, double speed){
-        double r = 6371.0 * (Math.pow(10, 6));
+        double r = 6.371 * (Math.pow(10.0, 6.0));
         double d = speed/ r;
         double latstartradian = Math.toRadians(latstart);
         double longstartradian = Math.toRadians(longstart);
+        double anglestartradian = Math.toRadians(angle);
 
-        double latendradian = Math.asin(Math.sin(latstartradian) * Math.cos(d) + Math.cos(latstartradian) * Math.sin(d) * Math.cos(angle));
-        double longendradian = longstartradian + Math.atan2(Math.sin(angle) * Math.sin(d) * Math.cos(latstartradian), Math.cos(d) - Math.sin(latstartradian) * Math.sin(latendradian));
+
+        double latendradian = (Math.asin(Math.sin(latstartradian)) * Math.cos(d)) + (Math.cos(latstartradian) * Math.sin(d) * Math.cos(anglestartradian));
+        double longendradian = longstartradian + (Math.atan2(Math.sin(anglestartradian) * Math.sin(d) * Math.cos(latstartradian), Math.cos(d) - Math.sin(latstartradian) * Math.sin(latendradian)));
+
 
         this.late = Math.toDegrees(latendradian);
         this.longe = Math.toDegrees(longendradian);

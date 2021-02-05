@@ -12,12 +12,17 @@ public class Subscriber {
     MqttClient client;
     HandleMqttMessages handlemess;
 
+
     IMqttMessageListener messageListener = new IMqttMessageListener() {
         @Override
-        public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+        public void messageArrived(String _topic, MqttMessage mqttMessage) throws Exception {
             System.out.println("Message received:\t"+ new String(mqttMessage.getPayload()) );
 
-            handlemess.handleMessage(new String(mqttMessage.getPayload()));
+            _topic = _topic.substring(0, _topic.length() - 4);          //removing /a2e to keep clean topic root
+            System.out.println(_topic);
+
+
+            handlemess.handleMessage(new String(mqttMessage.getPayload()),_topic);
         }
     };
 
@@ -36,7 +41,7 @@ public class Subscriber {
     }
 
     public void subscribeto(String topic) {
-        handlemess.setTopic(topic);
+//        handlemess.setTopic(topic);
         try {
             topic = topic + "/a2e";
             System.out.println("SUBSCRIBE to " + topic);

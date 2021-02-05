@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class HandleMqttMessages {
 
-    String topic;
+
     private JDBC database;
     private EndValues endValues;
     String[] oldValues = new String[8];
@@ -28,12 +28,12 @@ public class HandleMqttMessages {
 
     }
 
-    void handleMessage(String s) {
+    void handleMessage(String mess,String topic) {
 //        for (int i = 0; i <= 100; i++) {
 ////            System.out.println(s);
 //        }
-        if (StringUtils.countMatches(s, "@")==7) {
-            oldValues = s.split("@", 8);
+        if (StringUtils.countMatches(mess, "@")==7) {
+            oldValues = mess.split("@", 8);
 //        //0 time, 1 id, 2 long,3 lat,4 angle,5 speed,6 RSSI,7 Throughput
 //
 
@@ -75,7 +75,4 @@ public class HandleMqttMessages {
         }
     }
 
-    public void setTopic(String _topic) {
-        topic = _topic;
-    }
 }

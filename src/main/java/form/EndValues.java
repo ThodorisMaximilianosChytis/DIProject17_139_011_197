@@ -30,7 +30,6 @@ public class EndValues {
     public String [] getValues(String[] Line){
         String [] Result = new String[8];
         Result[0] = String.valueOf(Double.parseDouble(Line[0]) + 1);
-        System.out.println("ola kala mexri edw0");
 
         Result[1] = Line[1];
 

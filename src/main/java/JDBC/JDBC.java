@@ -54,27 +54,6 @@ public class JDBC {
     public void Insert(double timestep, int device_id, double real_lat, double real_long, double predicted_lat, double predicted_long
     , double real_RSSI, double real_throughput, double predicted_RSSI, double predicted_throughput) {
         System.out.println("Inserting in table " + TABLEN +  " in " + DATABASEN);
-        System.out.println("INSERT INTO VEHICLE(timestep," +
-                "device_id," +
-                "real_lat," +
-                "real_long" +
-                ",predicted_lat" +
-                ",predicted_long" +
-                ",real_RSSI" +
-                ",real_throughput" +
-                ",predicted_RSSI" +
-                ",predicted_throughput)" +
-                "VALUES("
-                + timestep + ","
-                + device_id + ","
-                + real_lat + ","
-                + real_long + ","
-                + predicted_lat + ","
-                + predicted_long + ","
-                + real_RSSI + ","
-                + real_throughput + ","
-                + predicted_RSSI + ","
-                + predicted_throughput + ");");
 
         ExecuteQuery("INSERT INTO VEHICLE(timestep," +
                 "device_id," +
@@ -97,7 +76,7 @@ public class JDBC {
                 + real_throughput + ","
                 + predicted_RSSI + ","
                 + predicted_throughput + ");");
-        System.out.println("Done");
+//        System.out.println("Done");
     }
 
     private void OpenConnection(){

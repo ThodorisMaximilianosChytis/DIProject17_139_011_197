@@ -33,9 +33,8 @@ public class HandleMqttMessages {
     }
 
     void handleMessage(String mess) {
-//        for (int i = 0; i <= 100; i++) {
-////            System.out.println(s);
-//        }
+
+
         if (StringUtils.countMatches(mess, "@")==7) {
 
             oldValues = mess.split("@", 8);
@@ -50,10 +49,10 @@ public class HandleMqttMessages {
                         Double.parseDouble(newValues[2]),
                         "K");
             }
-            System.out.println(topic + " %% " + DistanceSum);
+//            System.out.println(topic + " %% " + DistanceSum);
 
             //Insert into database
-            System.out.println(oldValues[0] + "-------" + newValues[0]);
+//            System.out.println(oldValues[0] + "-------" + newValues[0]);
             if (Double.parseDouble(oldValues[0])== Double.parseDouble(newValues[0])){
                 database.Insert(Double.parseDouble(oldValues[0]) ,
                         Integer.parseInt(oldValues[1]),
@@ -75,19 +74,19 @@ public class HandleMqttMessages {
             String sendtoandroid=newValues[0];
             for (int i = 2; i < newValues.length ; i++){
                 sendtoandroid =  sendtoandroid + "@" + newValues[i];
-                System.out.println(i);
+//                System.out.println(i);
                 if (i==3){
                     i+=2;
                 }
 
             }
             //sent message to android
-            System.out.println(sendtoandroid);
+            System.out.println("Message sent:   "+ topic + "/e2a" + "-->  " +sendtoandroid);
             publisher.publishto(topic,sendtoandroid);
-            System.out.println("OLD     NEW");
-            for (int i =0; i<=7 ; i++){
-                System.out.println(oldValues[i] + "     " + newValues[i]);
-            }
+//            System.out.println("OLD     NEW");
+//            for (int i =0; i<=7 ; i++){
+//                System.out.println(oldValues[i] + "     " + newValues[i]);
+//            }
 
 
         }
@@ -97,7 +96,7 @@ public class HandleMqttMessages {
         if (numofDistances==0)
             return 0;
         else
-            return DistanceSum/numofDistances;
+            return (DistanceSum/numofDistances);
     }
 
 }

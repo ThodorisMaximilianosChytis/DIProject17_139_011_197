@@ -28,7 +28,7 @@ public class Publisher {
         message.setPayload(messageString.getBytes());
 
         topic=topic + "/e2a";
-        System.out.println("PUBLISHER to " + topic);
+//        System.out.println("PUBLISHER to " + topic);
 
         try {
             client.publish(topic, message);

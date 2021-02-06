@@ -9,6 +9,7 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import sun.misc.Signal;
 
 import java.util.HashMap;
 
@@ -21,17 +22,22 @@ public class Subscriber {
     HashMap<String,HandleMqttMessages> Topics;
 
 
+
+
     IMqttMessageListener messageListener = new IMqttMessageListener() {
+
+
+
         @Override
         public void messageArrived(String _topic, MqttMessage mqttMessage) throws Exception {
-            System.out.println("Message received:\t"+ new String(mqttMessage.getPayload()) );
+            System.out.println("Message received: " + _topic + "  -->  " +new String(mqttMessage.getPayload()) );
 
             _topic = _topic.substring(0, _topic.length() - 4);          //removing /a2e to keep clean topic root
             String stringMessage = new String(mqttMessage.getPayload());
 
             if (! Topics.containsKey(_topic)) {
                 Topics.put(_topic, new HandleMqttMessages(mysqldb, pub, endValues, _topic));
-                System.out.println("Only one time please");
+//                System.out.println("Only one time please");
             }
 
             if (!stringMessage.equals("@SendingStops@"))
@@ -43,7 +49,7 @@ public class Subscriber {
 
             }
 
-            System.out.println(_topic);
+//            System.out.println(_topic);
 
 
         }
@@ -85,8 +91,18 @@ public class Subscriber {
     private void DisplayErrorDistance(String _topic ,Double error){
         System.out.println("________________________________________________________________________________________\n" +
                 "Mean Distance Error for topic:  " + _topic + " is -------->" + error + "m" +
-                "\n----------------------------------------------------------------------------------------------------" );
+                "\n________________________________________________________________________________________" );
 
+    }
+
+    public void Disconnect(){
+        try {
+            client.disconnect();
+        } catch (MqttException e) {
+            System.out.println("Error disconnecting");
+            e.printStackTrace();
+        }
+        System.out.println("END SUBSCRIBER");
     }
 
 }

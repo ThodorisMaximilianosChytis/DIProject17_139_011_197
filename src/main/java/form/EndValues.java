@@ -28,6 +28,10 @@ public class EndValues {
     }
 
     public String [] getValues(String[] Line){
+
+        //        //0 time, 1 id, 2 long,3 lat,4 angle,5 speed,6 RSSI,7 Throughput
+
+
         String [] Result = new String[8];
         Result[0] = String.valueOf(Double.parseDouble(Line[0]) + 1);
 

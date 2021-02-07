@@ -27,7 +27,7 @@ public class Subscriber {
     IMqttMessageListener messageListener = new IMqttMessageListener() {
 
 
-
+//          MESSAGE HANDLER
         @Override
         public void messageArrived(String _topic, MqttMessage mqttMessage) throws Exception {
             System.out.println("Message received: " + _topic + "  -->  " +new String(mqttMessage.getPayload()) );
@@ -35,21 +35,21 @@ public class Subscriber {
             _topic = _topic.substring(0, _topic.length() - 4);          //removing /a2e to keep clean topic root
             String stringMessage = new String(mqttMessage.getPayload());
 
+            //EVERY TOPIC GET OWN MESSAGEHANDLE CLASS
             if (! Topics.containsKey(_topic)) {
                 Topics.put(_topic, new HandleMqttMessages(mysqldb, pub, endValues, _topic));
 //                System.out.println("Only one time please");
             }
 
+            //COMMUNICATION STOPS
             if (!stringMessage.equals("@SendingStops@"))
                 Topics.get(_topic).handleMessage(stringMessage);
             else {
 
                 DisplayErrorDistance(_topic,Topics.get(_topic).getMeanDistanceError());
-//                System.out.println("End of story:   " + Topics.get(_topic).getMeanDistanceError());
-
+                Topics.remove(_topic);
             }
 
-//            System.out.println(_topic);
 
 
         }
@@ -92,6 +92,7 @@ public class Subscriber {
         System.out.println("________________________________________________________________________________________\n" +
                 "Mean Distance Error for topic:  " + _topic + " is -------->" + error + "m" +
                 "\n________________________________________________________________________________________" );
+
 
     }
 

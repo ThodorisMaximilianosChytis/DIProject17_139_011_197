@@ -83,20 +83,18 @@ public class HandleMqttMessages {
             //sent message to android
             System.out.println("Message sent:   "+ topic + "/e2a" + "-->  " +sendtoandroid);
             publisher.publishto(topic,sendtoandroid);
-//            System.out.println("OLD     NEW");
-//            for (int i =0; i<=7 ; i++){
-//                System.out.println(oldValues[i] + "     " + newValues[i]);
-//            }
 
 
         }
     }
 
     public double getMeanDistanceError(){
-        if (numofDistances==0)
+        if (numofDistances==0) {
             return 0;
-        else
-            return (DistanceSum/numofDistances);
+        }
+        else {
+            return (DistanceSum / numofDistances);
+        }
     }
 
 }

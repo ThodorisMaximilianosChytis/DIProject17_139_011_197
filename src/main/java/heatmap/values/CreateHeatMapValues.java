@@ -109,12 +109,7 @@ public class CreateHeatMapValues {
 
 
 
-//                        if (Values[(int) temp.getX()][(int) temp.getY()]==null){
-//                            Values[(int) temp.getX()][(int) temp.getY()] = new CellInfo();
-//                        }
-//                        Values[(int) temp.getX()][(int) temp.getY()].addVisitor();
-//                        Values[(int) temp.getX()][(int) temp.getY()].add2Data( Double.parseDouble(csvBody.get(row)[datacolumn]) );
-//                        ValuesDatasum+= Double.parseDouble(csvBody.get(row)[datacolumn]);
+//
 
                     }
             }
@@ -123,21 +118,7 @@ public class CreateHeatMapValues {
 
 
 
-//        public void Zvalperc(double[][] HeatmapData){
-//            //Create correct grid and cell values by indexing
-//            for (int i=0; i<Grid.getX(); i++){
-//                for(int j=0; j<Grid.getY() ; j++) {
-//                    if (Values[i][(int) Grid.getY()-1-j] != null) {
-//                        HeatmapData[j][i] = 100 * Values[i][(int) Grid.getY()-1-j].getDATASUM() / ValuesDatasum;
-//                    }else{
-//                        HeatmapData[j][i]=0;
-//                    }
-////                    System.out.println(HeatmapData[j][i]);
-//                }
-//            }
-//
-//
-//        }
+
 
         public void Zvalperc(double[][] HeatmapData){
             //Create correct grid and cell values by indexing

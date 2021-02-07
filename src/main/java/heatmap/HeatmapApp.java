@@ -101,21 +101,13 @@ public class HeatmapApp {
 //
         ImageGrid comeon =  new ImageGrid("./src/main/resources/"+ Name + "Map.png","./Output/" + Name + "Heatmap.png");
 //
-//        openandDisplayPhoto("./Output/" + Name + "Heatmap.png");
+        openandDisplayPhoto("./Output/" + Name + "Heatmap.png");
 
     }
 
     public CreateHeatMapValues getVal() {
         return Val;
     }
-
-//    public double getHeatmapValCellinfo(int i,int j) {          //exei thema
-//        if (Val!=null){
-//            CellInfo[][] temp = Val.getValues();
-//            return temp[i][j].getMeanData();
-//        }
-//        return -1.0;
-//    }
 
 
 }

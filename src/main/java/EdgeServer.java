@@ -72,6 +72,7 @@ public class EdgeServer {
 
             if(DoAJob("Do you want to start Android communication" + " (Terminate Server using CTRL + C )").equals("Y") ) {
 
+
                 //Create Database and Table
                 mysqldb = new JDBC("newuser", "Sdi17_139_011_197@");
                 //Disconnect
@@ -97,6 +98,29 @@ public class EdgeServer {
                 sub = new Subscriber(IP, Port, mysqldb, pub, new EndValues(RSSI.getVal(), Throughput.getVal()));
 
 
+                // -----------------CATCH CTRL C AND DISCONNECT SOURCES-------------------------------------------------
+                JDBC finalMysqldb = mysqldb;
+                Publisher finalPub = pub;
+                Subscriber finalSub = sub;
+
+                Runtime.getRuntime().addShutdownHook(new Thread() {
+                    public void run() {
+                        if (finalPub !=null){
+                            finalPub.Disconnect();
+                        }
+                        if (finalSub!=null){
+                            finalSub.Disconnect();
+                        }
+                        if(finalMysqldb !=null ){
+                            finalMysqldb.EXIT();
+
+                        }
+                        System.out.println("EDGESERVER OFF");
+                    }
+                });
+
+
+
                 System.out.println("Please Enter topic1 : Hint <roadinfo26>");
                 sub.subscribeto(scanf.nextLine());
 
@@ -106,26 +130,7 @@ public class EdgeServer {
 
 
         }
-// -----------------CATCH CTRL C AND DISCONNECT SOURCES-------------------------------------------------
-        JDBC finalMysqldb = mysqldb;
-        Publisher finalPub = pub;
-        Subscriber finalSub = sub;
 
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                if (finalPub !=null){
-                    finalPub.Disconnect();
-                }
-                if (finalSub!=null){
-                    finalSub.Disconnect();
-                }
-                if(finalMysqldb !=null ){
-                    finalMysqldb.EXIT();
-
-                }
-                System.out.println("EDGESERVER OFF");
-            }
-        });
 
 
     }
